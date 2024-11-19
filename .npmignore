@@ -1,0 +1,23 @@
+# 排除测试文件
+tests/
+*.spec.js
+*.test.js
+
+# 排除构建工具配置
+webpack.config.js
+rollup.config.js
+tsconfig.json
+
+# 排除文档和其他无关文件
+*.md
+docs/
+examples/
+
+# 排除本地开发文件
+.env
+.vscode/
+.DS_Store
+
+/src/
+/html/
+/dist/json-rpc-iframe.js
