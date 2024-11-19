@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iframe Page</title>
+    <script src="/dist/json-rpc-iframe.js"></script>
+    <script>
+      const { JsonRpcIframe } = JsonRpcIframeLibrary;
+      const rpc = new JsonRpcIframe(window.parent);
+      // 接收来自父页面的消息
+      rpc.registerMethod("click", (params) => {
+        const parentMessage = document.getElementById("parentMessage");
+        parentMessage.textContent =
+          "收到来自父页面的消息: " + params.time + ", " + params.message;
+      });
+
+      // 向父页面发送消息
+      function sendMessageToParent() {
+        const message = document.getElementById("messageToParent").value;
+        rpc.sendRequest("click", { time: Date.now(), message: message });
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Iframe 页面</h1>
+    <label for="messageToParent">发送给父页面的消息:</label>
+    <input type="text" id="messageToParent" placeholder="输入消息" />
+    <button onclick="sendMessageToParent()">发送到父页面</button>
+
+    <h3 id="parentMessage">收到的消息将显示在这里</h3>
+  </body>
+</html>
