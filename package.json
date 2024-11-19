@@ -1,6 +1,6 @@
 {
   "name": "json-rpc-iframe",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "将iframe内外通信的postMessage封装成jsonRpc，",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
