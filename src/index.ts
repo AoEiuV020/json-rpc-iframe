@@ -25,9 +25,6 @@ export class JsonRpcIframe {
 
     // 绑定消息事件监听
     window.addEventListener("message", this.onMessage.bind(this));
-    // 检测 iframe 的关闭或页面跳转
-    this.remoteWindow.addEventListener("unload", this.destroy.bind(this));
-    window.addEventListener("unload", this.destroy.bind(this));
   }
 
   private onMessage(event: MessageEvent) {
@@ -44,18 +41,15 @@ export class JsonRpcIframe {
 
   public registerMethod<TParams, TResult>(
     name: string,
-    handler: (params: TParams) => TResult | Promise<TResult>
+    handler: (params?: TParams) => TResult | Promise<TResult>
   ) {
     this.serverAndClient.addMethod(name, handler);
   }
-  public removeMethod(name: string): void {
+  public unregisterMethod(name: string): void {
     this.serverAndClient.removeMethod(name);
   }
 
-  public async sendRequest<TParams, TResult>(
-    method: string,
-    params: TParams
-  ): Promise<TResult> {
+  public async sendRequest(method: string, params?: object): Promise<any> {
     return this.serverAndClient.request(method, params);
   }
 
@@ -64,4 +58,3 @@ export class JsonRpcIframe {
     this.serverAndClient.rejectAllPendingRequests("Connection is closed.");
   }
 }
-

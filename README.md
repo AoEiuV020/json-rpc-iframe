@@ -31,3 +31,7 @@ function sendMessageToParent() {
   rpc.sendRequest("click", { time: Date.now(), message: message });
 }
 ```
+页面结束需要销毁，会reject所有未处理的请求，
+```js
+rpc.destroy();
+```
