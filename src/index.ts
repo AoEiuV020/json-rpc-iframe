@@ -53,6 +53,10 @@ export class JsonRpcIframe {
     return this.serverAndClient.request(method, params);
   }
 
+  public sendNotification(method: string, params?: object): void {
+    this.serverAndClient.notify(method, params);
+  }
+
   public destroy() {
     window.removeEventListener("message", this.onMessage.bind(this));
     this.serverAndClient.rejectAllPendingRequests("Connection is closed.");
