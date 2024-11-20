@@ -7,8 +7,18 @@
   "scripts": {
     "build": "tsc && webpack"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "channel",
+    "messaging",
+    "iframe",
+    "rpc",
+    "json-rpc"
+  ],
+  "author": "AoEiuV020",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AoEiuV020/json-rpc-iframe.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "ts-loader": "^9.5.1",
